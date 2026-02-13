@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StyleSense - AI Fashion Assistant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+        }
+
+        /* NAVBAR */
+        nav {
+            background: linear-gradient(to right, #e63946, #ff8fab);
+            color: white;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        nav ul li a:hover {
+            color: #ff4d6d;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 90vh;
+            background: url('https://images.unsplash.com/photo-1520975916090-3105956dac38') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 45px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        /* ABOUT SECTION */
+        .about {
+            padding: 60px 50px;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        .about h2 {
+            margin-bottom: 20px;
+            color: #e63946;
+        }
+
+        .about p {
+            max-width: 700px;
+            margin: auto;
+            font-size: 16px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(to right, #e63946, #ff8fab);
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+        footer p {
+            font-size: 14px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <nav>
+        <div class="logo">StyleSense</div>
+        <ul>
+            <li><a href="register.html">Sign In</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>AI Powered Personalized Fashion Recommendations</h1>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <h2>About StyleSense</h2>
+        <p>
+            StyleSense is a Generative AI powered fashion recommendation system 
+            that provides personalized outfit suggestions based on user preferences 
+            and visual inputs. It offers intelligent styling guidance, trend-based insights, 
+            and a smart interactive experience to help users enhance their fashion confidence.
+        </p>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 StyleSense. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

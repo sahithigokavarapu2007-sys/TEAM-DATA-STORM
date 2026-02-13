@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - StyleSense</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ffdde1, #ee9ca7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-box {
+            background: white;
+            padding: 30px;
+            width: 320px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            color: #e63946;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #e63946;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #d62839;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .register-link a {
+            color: #e63946;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-box">
+    <h2>Login</h2>
+
+    <form onsubmit="return loginUser()">
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+
+        <button type="submit">Login</button>
+        <div class="error" id="errorMsg"></div>
+    </form>
+
+    <div class="register-link">
+        Don't have an account? <a href="register.html">Register</a>
+    </div>
+</div>
+
+<script>
+function loginUser() {
+
+    let email = document.getElementById("loginEmail").value.trim();
+    let password = document.getElementById("loginPassword").value;
+    let errorMsg = document.getElementById("errorMsg");
+
+    errorMsg.innerText = "";
+
+    // Get all registered users
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    if (users.length === 0) {
+        errorMsg.innerText = "No registered users found!";
+        return false;
+    }
+
+    // Find matching user
+    let validUser = users.find(user =>
+        user.email === email && user.password === password
+    );
+
+    if (validUser) {
+        alert("Login Successful!");
+
+        // Store logged-in user session
+        localStorage.setItem("loggedInUser", JSON.stringify(validUser));
+
+        window.location.href = "home.html";
+        return false;
+    } else {
+        errorMsg.innerText = "Invalid Email or Password!";
+        return false;
+    }
+}
+</script>
+
+</body>
+</html>

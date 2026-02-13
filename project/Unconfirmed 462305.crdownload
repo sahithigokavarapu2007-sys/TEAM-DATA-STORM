@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - StyleSense</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to right, #ffdde1, #ee9ca7);
+        }
+
+        .register-container {
+            background: white;
+            padding: 30px;
+            width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #e63946;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #e63946;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            margin-top: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #d62839;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            text-decoration: none;
+            color: #e63946;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="register-container">
+        <h2>Create Account</h2>
+
+        <form onsubmit="return validateForm()">
+            <input type="text" id="firstName" placeholder="First Name" required>
+            <input type="text" id="lastName" placeholder="Last Name" required>
+            <input type="email" id="email" placeholder="Email Address" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+
+            <button type="submit">Register</button>
+            <div class="error" id="errorMessage"></div>
+        </form>
+
+        <div class="login-link">
+            Already have an account? <a href="login.html">Login</a>
+        </div>
+    </div>
+
+<script>
+function validateForm() {
+
+    let firstName = document.getElementById("firstName").value.trim();
+    let lastName = document.getElementById("lastName").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+    let errorMessage = document.getElementById("errorMessage");
+
+    errorMessage.innerText = "";
+
+    // Empty check
+    if (!firstName || !lastName || !email || !password || !confirmPassword) {
+        errorMessage.innerText = "Please fill all fields!";
+        return false;
+    }
+
+    // ✅ Password length check
+    if (password.length < 8) {
+        errorMessage.innerText = "Password must be at least 8 characters long!";
+        return false;
+    }
+
+    // Password match check
+    if (password !== confirmPassword) {
+        errorMessage.innerText = "Passwords do not match!";
+        return false;
+    }
+
+    // ✅ Check if email already exists
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    let emailExists = users.some(user => user.email === email);
+
+    if (emailExists) {
+        errorMessage.innerText = "This email is already registered!";
+        return false;
+    }
+
+    // Store new user
+    let newUser = {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password
+    };
+
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+
+    alert("Registration Successful! Please Login.");
+    window.location.href = "login.html";
+    return false;
+}
+</script>
+</body></html>

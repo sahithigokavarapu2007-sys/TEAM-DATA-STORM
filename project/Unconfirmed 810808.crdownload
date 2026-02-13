@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StyleSense - AI Fashion Assistant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ffdde1, #ee9ca7);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            background: white;
+            margin: 40px auto;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #e63946;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #e63946;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #d62839;
+        }
+
+        .output {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>StyleSense 🤖✨</h1>
+
+    <!--<label>Name</label>
+    <input type="text" id="name" placeholder="Enter your name">-->
+
+    <label>Occasion</label>
+    <select id="occasion">
+        <option value="">Select Occasion</option>
+        <option value="Wedding">Wedding</option>
+        <option value="Party">Party</option>
+        <option value="College">College</option>
+        <option value="Office">Office</option>
+    </select>
+
+    <label>Body Type</label>
+    <select id="bodyType">
+        <option value="">Select Body Type</option>
+        <option value="Slim">Slim</option>
+        <option value="Medium">Medium</option>
+        <option value="Heavy">Heavy</option>
+    </select>
+
+    <label>Preferred Style</label>
+    <select id="style">
+        <option value="">Select Style</option>
+        <option value="Traditional">Traditional</option>
+        <option value="Modern">Modern</option>
+        <option value="Casual">Casual</option>
+        <option value="Elegant">Elegant</option>
+    </select>
+
+    <!--<label>Upload Your Image (Optional)</label>
+    <input type="file" id="imageUpload">-->
+
+    <button onclick="generateStyle()">Generate AI Recommendation</button>
+
+    <div class="output" id="output">
+        <p>Your AI-generated fashion suggestion will appear here...</p>
+    </div>
+</div>
+
+<script>
+function generateStyle() {
+
+    let occasion = document.getElementById("occasion").value;
+    let bodyType = document.getElementById("bodyType").value;
+    let style = document.getElementById("style").value;
+
+    if (!occasion || !bodyType || !style) {
+        document.getElementById("output").innerHTML =
+        "<p>Please fill all required fields.</p>";
+        return;
+    }
+
+    let outfit = "";
+    let accessories = "";
+    let footwear = "";
+    let bodyTip = "";
+
+    // Occasion Based Outfit
+    if (occasion === "Wedding") {
+        outfit = "Elegant silk saree or designer lehenga";
+        accessories = "Gold jewelry with statement earrings";
+        footwear = "Embellished heels";
+    } 
+    else if (occasion === "Office") {
+        outfit = "Formal kurti with palazzo or blazer set";
+        accessories = "Minimal studs and smart watch";
+        footwear = "Closed toe flats or block heels";
+    } 
+    else if (occasion === "Party") {
+        outfit = "Trendy gown or fusion Indo-western outfit";
+        accessories = "Chic clutch and layered necklace";
+        footwear = "Stylish high heels";
+    }
+
+    // Style Modifier
+    if (style === "Minimal") {
+        accessories = "Simple elegant jewelry with soft makeup";
+    } 
+    else if (style === "Bold") {
+        accessories += " with bold lipstick and statement pieces";
+    }
+
+    // Body Type Styling Tips
+    if (bodyType === "Petite") {
+        bodyTip = "Choose high-waist outfits and vertical patterns to enhance height.";
+    } 
+    else if (bodyType === "Curvy") {
+        bodyTip = "Structured and well-fitted outfits will highlight your curves beautifully.";
+    } 
+    else if (bodyType === "Tall") {
+        bodyTip = "Layered outfits and wide-leg styles enhance your silhouette.";
+    } 
+    else {
+        bodyTip = "Choose outfits that make you feel confident and comfortable.";
+    }
+
+    document.getElementById("output").innerHTML = `
+        <h3>✨ Your Personalized Style Suggestion</h3>
+        <p><strong>Outfit:</strong> ${outfit}</p>
+        <p><strong>Accessories:</strong> ${accessories}</p>
+        <p><strong>Footwear:</strong> ${footwear}</p>
+        <p><strong>Styling Tip:</strong> ${bodyTip}</p>
+    `;
+}
+</script>
+</body>
+</html>
